@@ -7,7 +7,9 @@ class Board
     # last_node = dfs_move_tree(root, final_pos)
     last_node = build_move_tree(root, final_pos)
     path = move_history(last_node)
-    display_path(path.reverse)
+      .reverse
+      .map(&:start_pos)
+    display_path(path)
   end
 
   private
@@ -49,10 +51,10 @@ class Board
   def move_history(node)
     path = []
     until node.parent.nil?
-      path << node.start_pos
+      path << node
       node = node.parent
     end
-    path << node.start_pos
+    path << node
   end
 
   def display_path(path)
